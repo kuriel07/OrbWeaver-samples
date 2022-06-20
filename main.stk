@@ -1,0 +1,60 @@
+
+
+interface mylib lib "MyLib.dll" {
+ 	int func_0();
+	int func_1(char );
+	int func_2(char , short );
+	int func_3(char , short , int );
+	int func_4(char , short , int , long );
+	int func_5(char , short , int , long , float );
+	int func_6(char , short , int , long , float , double );
+	int func_7(int[], int );
+	int func_8(float[]);
+}
+
+//comment
+/*
+class program2 {
+
+    public function main() {
+	//var m = new mylib();
+	//m->func_0();
+	//m->func_1(20);
+	//m->func_3(20, 40, 60);
+	//m->func_4(20 , 21 , 22 , 23 );
+	//m->func_5(20 , 21 , 22 , 23 , 2.4 );
+	//m->func_8([0,1.2,2], 3);
+	//p = null;
+	//print((var)((float)200.0- (int)100));
+	var a = [0,2,4,6,7,8], b ;
+	print("output : ");
+	//b = a.first();
+	//while((c = b.next()) != null) {
+	foreach(var c in [1,"hello",3]) {
+		print(c);
+	}
+	//while(true);
+    }
+}*/
+
+class program2 {
+
+    public function main() {
+	var m = new mylib();
+	m->func_8([0,1.2,2]);
+	//while(true);
+	m->func_6('A', 20 , 30 , 40 , 0.5 , 0.6 );
+	m = new opencv();
+	var p = m->VideoCapture("vtest.avi");
+	while(m->waitKey(30) != 27) {
+		//var t = p->grab() /2;
+		m->test_callback(function(text, w) { print(text); }, "test");
+		m->imshow("window", (p->grab() /2)->crop(m->Rect(0,0,320,240)));
+		//m->imshow("window", p->grab() );
+		//m->imshow("window", p->grab() /2);
+	}
+	m->destroyAllWindow();
+	p = null;
+	print((var)((float)200.0- (int)100));
+    }
+}

@@ -1,0 +1,18 @@
+
+
+class program {
+
+    public function main() {
+	var mylib = new mylib();
+	//mylib->func_0();
+	mylib->func_1(1);
+	mylib->func_2(1,2);
+	mylib->func_3(1,2,4);
+	mylib->func_4(1,2,4,8);
+	mylib->func_7(1,2,4,8, 7);
+	mylib->func_8(1,2,4,8, 7,88);
+	//mylib->func_6(1,2,4,8, 1.2, 86);
+	//mylib->func_5(1,2,4,8, 1.2);
+    }
+
+}

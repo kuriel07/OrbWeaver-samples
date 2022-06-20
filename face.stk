@@ -1,0 +1,33 @@
+class program2 {
+
+    public function main() {
+	var cv = new opencv();
+	var cc = cv->CascadeClassifier("lbpcascade_frontalface.xml");
+	var fm = cv->FacemarkLBF("lbfmodel.yaml");
+	var p = cv->VideoCapture("/dev/video1");
+	if(p == null) {
+		print("camera not found");
+		return;
+	}
+	while(cv->waitKey(30) != 27) {
+		var frame = p->grab()->crop(cv->Rect(0,32,640,320));
+		var faces = cc->detect(frame);
+		var marks = fm->fit(frame, faces);
+		if(marks != null && marks.count() > 0) {		//->bug compiler
+			frame->polylines(marks[0]->to_int(0,17), cv->Color(255,255,0), 2, 0);
+			frame->polylines(marks[0]->to_int(17,5), cv->Color(255,255,0), 2, 0);
+			frame->polylines(marks[0]->to_int(22,5), cv->Color(255,255,0), 2, 0);
+			frame->polylines(marks[0]->to_int(27,4), cv->Color(255,255,0), 2, 0);
+			frame->polylines(marks[0]->to_int(30,6), cv->Color(255,255,0), 2, 1);
+			frame->polylines(marks[0]->to_int(36,6), cv->Color(255,255,0), 2, 1);
+			frame->polylines(marks[0]->to_int(42,6), cv->Color(255,255,0), 2, 1);
+			frame->polylines(marks[0]->to_int(48,12), cv->Color(255,255,0), 2, 1);
+			frame->polylines(marks[0]->to_int(60,8), cv->Color(255,255,0), 2, 1);
+		}
+		cv->imshow("window", frame);
+	}
+	cv->destroyAllWindow();
+	p = null;
+	print((var)((float)200.0- (int)100));
+    }
+}

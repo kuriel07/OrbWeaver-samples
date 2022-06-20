@@ -1,0 +1,29 @@
+
+
+
+class program {
+
+    public function main() {
+	var f = fopen("/home/kouryuu/StackLib/x64/Release64/synset_words.txt");
+	var fsz = f.seek(-1);
+	f.seek(0);
+	print(fsz);
+	var lines = f.read(fsz);
+	print(lines);
+	var g = new gtk();
+	var p = g->Application("test.gtk", function(app) {
+	});
+	var w = g->Window("hello");
+	var btn = g->Button("test");
+	btn->on_click(function(b) {
+		print("button clicked");
+		var g1 = new gtk();
+		g1->MessageBox("test","test", 0);
+	});
+	btn->show();
+	w->add(btn);
+	w->set_size(640,480);
+	w->show();
+	g->Run();
+    }
+}

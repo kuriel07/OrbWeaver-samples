@@ -1,0 +1,12 @@
+class program2 {
+
+    public function main() {
+	var id = new_session("abcdefgh", 8000000);
+	var content = find_session(id);
+	print(content);
+	destroy_session(id);
+	content = find_session(id);
+	print(content);
+    }
+}
+

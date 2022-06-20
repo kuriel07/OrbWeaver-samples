@@ -1,0 +1,16 @@
+
+
+class program {
+
+    public function main() {
+	var g = new gst();
+	var p = g->PipelineFromString("uridecodebin uri=https://www.freedesktop.org/software/gstreamer-sdk/data/media/sintel_trailer-480p.webm ! xvimagesink");
+
+	if(p == null) {
+		print("unable to create gstreamer");
+		return;
+	}
+	print("starting gstreamer\n");
+	p->start();
+    }
+}

@@ -1,0 +1,33 @@
+
+
+class program2 {
+
+    public function main() {
+	var cv = new opencv();
+	var i = 0;
+	var caffe = new caffe();
+	var net = caffe->Network("/home/kouryuu/StackLib/x64/Release64/resnet_10_ssd.prototxt", 1);
+	print("load model : ");
+	net->load_caffemodel("/home/kouryuu/StackLib/x64/Release64/Resnet10_SSD_300x300_iter_31474_pruned.caffemodel");
+	var cap = cv->VideoCapture("/home/kouryuu/zlpr/scene02.mp4");
+	while(cv->waitKey(30) != 27) {
+		var img = cap->grab();
+	print("net forward");
+		var out = net->forward(img);
+	
+		foreach(var c in out[0]->group(7)) {
+		// Detection format: [image_id, label, score, xmin, ymin, xmax, ymax].
+			if(c[2] > 0.8) {
+				print("display rectangle");
+				var d = (c[0] - c[i]) * img->width();
+				img->rectangle(cv->Rect(c[3] * img->width(), c[4] * img->height(), 
+					(c[5] - c[3]) * img->width(), (c[6] - c[4]) * img->height()),
+					cv->Color(255, 255, 0),
+					1, 8);
+			}
+		}
+		print("show image");
+		cv->imshow("result", img);
+	}
+    }
+}

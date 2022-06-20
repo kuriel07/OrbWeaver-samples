@@ -1,0 +1,16 @@
+
+class wtk1 {
+
+    public function setup() {
+    }
+
+    public function main() {
+	var toolkit = new wtk();
+	var gui = toolkit->BuilderFromTemplateFile("/home/kouryuu/StackLib/bin/www/demo.view", ["hello" ] );
+	gui->find("btn1")->on_click(function(sender) {
+		print("clicked");
+	});
+	print(gui->html());
+    }
+	
+}
